@@ -1,0 +1,24 @@
+{
+  "Copyright": "Copyright (c) Fusetools AS 2017",
+  "Publisher": "Fusetools AS",
+  "Version": "0.0.1",
+  "Package": {
+    "ProjectUrl": "https://fusetools.com"
+  },
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+    "Fuse.Charting",
+    "Fuse.UXKits.Alive"
+  ],
+  "Mobile": {
+    "Orientations": "Portrait"
+  },
+  "Includes": [
+    "Components/**.ux",
+    "Pages/**.ux",
+    "MainView.ux",
+    "Assets/**.jpg:Bundle",
+    "Assets/**.png:Bundle"
+  ]
+}

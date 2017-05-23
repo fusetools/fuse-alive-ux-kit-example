@@ -1,0 +1,187 @@
+<Alive.Page ux:Class="Alive.ExampleApp.SchedulePage" xmlns:example="Alive.ExampleApp">
+	<Alive.Drawer ux:Dependency="drawer" />
+	<Router ux:Dependency="router" />
+	<JavaScript>
+	var Observable = require('FuseJS/Observable');
+
+	function ScheduleDay(day, color, items) {
+		var self = this;
+
+		self.day = day;
+		self.color = color;
+		self.items = Observable(items).expand();
+		self.removeScheduleItem = function(arg) {
+			self.items.remove(arg.data);
+		}
+	}
+
+	exports.pushDetails = function() {
+		router.push("details");
+	}
+
+	exports.schedulesByDay = Observable(
+		new ScheduleDay("Today", "Alive.Red", [
+			{
+				title: "Meet 'n greet fellow Dribbblers",
+				day: "Friday",
+				time: '19:00',
+				category: 'Meetup',
+				categoryColor: 'Alive.Red'
+			},
+			{
+				title: "Katakombe, Scene blue",
+				day: "Tomorrow",
+				time: '22:00',
+				category: 'Concert',
+				categoryColor: 'Alive.Blue'
+			},
+			{
+				title: "Eliza Carrington - Work smarter, better",
+				day: "Friday",
+				time: '14:00',
+				category: 'Talk',
+				categoryColor: 'Alive.Orange'
+			},
+		]),
+		new ScheduleDay("Tomorrow", "Alive.Orange", [
+			{
+				title: "Katakombe, Scene blue",
+				day: "Tomorrow",
+				time: '22:00',
+				category: 'Concert',
+				categoryColor: 'Alive.Blue'
+			},
+			{
+				title: "Eliza Carrington - Work smarter, better",
+				day: "Friday",
+				time: '14:00',
+				category: 'Talk',
+				categoryColor: 'Alive.Orange'
+			},
+			{
+				title: "Meet 'n greet fellow Dribbblers",
+				day: "Friday",
+				time: '19:00',
+				category: 'Meetup',
+				categoryColor: 'Alive.Red'
+			},
+		]),
+		new ScheduleDay("Friday", "Alive.Blue", [
+			{
+				title: "Eliza Carrington - Work smarter, better",
+				day: "Friday",
+				time: '14:00',
+				category: 'Talk',
+				categoryColor: 'Alive.Orange'
+			},
+			{
+				title: "Eliza Carrington - Work smarter, better",
+				day: "Friday",
+				time: '14:00',
+				category: 'Talk',
+				categoryColor: 'Alive.Orange'
+			},
+			{
+				title: "Meet 'n greet fellow Dribbblers",
+				day: "Friday",
+				time: '19:00',
+				category: 'Meetup',
+				categoryColor: 'Alive.Red'
+			},
+		])
+	);
+	
+	</JavaScript>
+
+	<Alive.MediaScroller TopBarColor="Alive.Dark.PrimaryBackgroundColor">
+		<StackPanel ux:Template="TopBar">
+			<StatusBarBackground />
+			<Alive.UnderlineTitle Text="Your schedule" />
+		</StackPanel>
+
+		<StackPanel ux:Binding="Media" Color="{Resource Alive.PrimaryBackgroundColor}">
+			<Alive.DarkTheme />
+		</StackPanel>
+
+		<Panel ux:Template="MediaOverlay" Margin="0,80,0,0">
+			<Alive.Carousel>
+				<Alive.DarkTheme />
+				<Alive.CarouselPage>
+					<Alive.ThemedCard>
+						<Alive.DarkTheme />
+						<StackPanel ItemSpacing="30" Width="200" Alignment="Center">
+							<Alive.Body TextAlignment="Center" TextWrapping="Wrap">
+								See which events your friends will attend
+							</Alive.Body>
+							<Alive.Bubbles>
+								<Alive.Bubble>
+									<Alive.ImageFill File="../Assets/profile1.jpg" />
+								</Alive.Bubble>
+								<Alive.Bubble>
+									<Alive.ImageFill File="../Assets/profile2.jpg" />
+								</Alive.Bubble>
+								<Alive.Bubble>
+									<Alive.ImageFill File="../Assets/profile3.jpg" />
+								</Alive.Bubble>
+								<Alive.Bubble>
+									<Text Alignment="Center">+2</Text>
+								</Alive.Bubble>
+							</Alive.Bubbles>
+						</StackPanel>
+						<LinearGradient>
+							<GradientStop Offset="0" Color="Alive.Gradient3.StartColor" />
+							<GradientStop Offset="1" Color="Alive.Gradient3.EndColor" />
+						</LinearGradient>
+					</Alive.ThemedCard>
+				</Alive.CarouselPage>
+				<Alive.CarouselPage>
+					<Alive.Card>
+						<Alive.ImageFill File="../Assets/event2.jpg" />
+					</Alive.Card>
+				</Alive.CarouselPage>
+				<Alive.CarouselPage>
+					<Alive.Card>
+						<Alive.ImageFill File="../Assets/event4.jpg" />
+					</Alive.Card>
+				</Alive.CarouselPage>
+				<Alive.CarouselPage>
+					<Alive.Card>
+						<Alive.ImageFill File="../Assets/event3.jpg" />
+					</Alive.Card>
+				</Alive.CarouselPage>
+			</Alive.Carousel>
+		</Panel>
+
+		<Each Items="{schedulesByDay}">
+			<WhileNotEmpty Items="{items}">
+				<StackPanel ux:Name="dayContainer" ClipToBounds="true">
+					<RemovingAnimation>
+						<Move Y="-1" RelativeTo="Size" Delay="0.5" Duration="0.3" Easing="CircularInOut" />
+					</RemovingAnimation>
+					<LayoutAnimation>
+						<Move Y="1" RelativeTo="PositionChange" Duration="0.3" Easing="CircularInOut" />
+						<Resize Y="1" RelativeTo="SizeChange" Duration="0.3" Easing="CircularInOut" />
+					</LayoutAnimation>
+
+					<Alive.StickyHeaderAnimation Header="header" />
+
+					<Alive.ListViewHeader ux:Name="header" Text="{day}" Color="{DataToResource color}" />
+
+					<Alive.ListView Items="{items}">
+						<Alive.SwipeActionPanel ux:Template="Item" ux:Name="item" ButtonText="Remove this event" ConfirmationText="Removed!" HitTestMode="LocalBoundsAndChildren" GradientEndColor="#F59579" GradientStartColor="#CF566B" StayOpen="true">
+							<Alive.SwipeActionConfirmed Handler="{removeScheduleItem}" />
+
+							<example:ScheduleItem ux:Name="scheduleItem" Time="{time}" Category="{category}" Title="{title}" CategoryColor="{DataToResource categoryColor}" Clicked="{pushDetails}" />
+
+							<LayoutAnimation>
+								<Move Y="1" RelativeTo="PositionChange" Duration="0.35" Easing="CircularInOut" />
+								<Resize Y="1" RelativeTo="SizeChange" Duration="0.35" Easing="CircularInOut" />
+							</LayoutAnimation>
+						</Alive.SwipeActionPanel>
+
+					</Alive.ListView>
+				</StackPanel>
+			</WhileNotEmpty>
+		</Each>
+	</Alive.MediaScroller>
+</Alive.Page>

@@ -1,0 +1,25 @@
+<Panel ux:Class="Alive.ExampleApp.ScheduleDetails">
+	<string ux:Property="Time"/>
+	<string ux:Property="Location" />
+	<string ux:Property="Category"/>
+	<string ux:Property="Title"/>
+	<float4 ux:Property="CategoryColor"/>
+	<ScrollView Margin="10">
+		<StackPanel>
+			<Panel>
+				<Alive.DarkTheme/>
+				<StackPanel Alignment="Bottom" Margin="25">
+					<Rectangle Width="27" Height="2.5" Color="{ReadProperty CategoryColor}" Alignment="Left" Margin="0,0,0,8"/>
+					<Alive.Title Value="{ReadProperty Title}"/>
+					<Alive.Body Value="{ReadProperty Category}"/>
+				</StackPanel>
+				<Image File="../Assets/event3.jpg"/>
+			</Panel>
+			<WrapPanel Margin="20">
+				<Alive.IconLabel Text="{ReadProperty Time}" Icon="&#xEC88;" Margin="0,0,20,0" IconSize="14"/>
+				<Alive.IconLabel Text="Building C1, Room: Root" Icon="&#xEC88;" IconSize="14"/>
+			</WrapPanel>
+			<Alive.Body Margin="20">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</Alive.Body>
+		</StackPanel>
+	</ScrollView>
+</Panel>

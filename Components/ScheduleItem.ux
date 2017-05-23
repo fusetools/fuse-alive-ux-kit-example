@@ -1,0 +1,12 @@
+<Grid ux:Class="Alive.ExampleApp.ScheduleItem" Columns="auto,1*" Margin="20,25,20,20" >
+	<string ux:Property="Time"/>
+	<string ux:Property="Category"/>
+	<string ux:Property="Title"/>
+	<float4 ux:Property="CategoryColor"/>
+
+	<Alive.Donut StrokeColor="{ReadProperty CategoryColor}" Alignment="TopLeft" Margin="0,3,13,0"/>
+	<Grid RowCount="2" Width="100%">
+		<Alive.Body Color="Alive.Gray200" Value="{ReadProperty Time}, {ReadProperty Category}" FontSize="13" Margin="0,0,0,10"/>
+		<Alive.Body Value="{ReadProperty Title}" FontSize="15"/>
+	</Grid>
+</Grid>

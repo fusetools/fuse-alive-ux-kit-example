@@ -1,0 +1,6 @@
+build/
+.uno/
+.stuff/
+*.swp
+*.tmp
+*.rfile

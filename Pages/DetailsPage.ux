@@ -1,0 +1,66 @@
+<Alive.Page ux:Class="Alive.ExampleApp.DetailsPage" xmlns:example="Alive.ExampleApp">
+	<Router ux:Dependency="router" />
+	<JavaScript>
+		exports.goBack = function() {
+			router.goBack();
+		}
+	</JavaScript>
+	<Alive.MediaScroller TopBarColor="withOpacity({Resource Alive.AccentColor}, .7)">
+		<Image ux:Binding="Media" File="../Assets/event6.jpg" />
+		<StackPanel ux:Template="TopBar">
+			<StatusBarBackground />
+			<DockPanel Margin="20">
+				<Alive.BackButton Dock="Left" Clicked="{goBack}" />
+				<Alive.IconLabel Icon="&#xEAF8;" Text="Talk" Dock="Right" />
+			</DockPanel>
+		</StackPanel>
+
+		<Alive.ActionButton ux:Template="BottomBar" Alignment="BottomRight" Anchor="100%, 50%" Margin="0,0,30,0" Dock="Right" />
+
+		<example:TitlePanel />
+
+		<Alive.StickyHeader ux:Name="sticky">
+			<Alive.StickingAnimation>
+				<Change tabBarShadow.Size="5" />
+			</Alive.StickingAnimation>
+			<Alive.TabBar ux:Binding="Header" ux:Name="tabBar" Navigation="pc">
+				<Shadow ux:Name="tabBarShadow" Size="2" Distance="1" Color="#0001" />
+			</Alive.TabBar>
+			<PageControl ux:Name="pc" InactiveState="Unchanged">
+				<Alive.TabPage Label="Info">
+					<StackPanel Margin="20">
+						<WrapPanel Margin="0,10">
+							<Alive.IconLabel Text="Today - 16:00" Icon="&#xEC88;" Margin="0,0,20,0" IconSize="14"/>
+							<Alive.IconLabel Text="Building C1, Room: Root" Icon="&#xEC80;" IconSize="14"/>
+						</WrapPanel>
+						<Alive.Body>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+
+Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+
+Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+						</Alive.Body>
+					</StackPanel>
+				</Alive.TabPage>
+
+				<Alive.TabPage Label="Biography">
+					<Alive.Body Margin="20">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+
+Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+
+Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+					</Alive.Body>
+				</Alive.TabPage>
+
+				<Alive.TabPage Label="Map">
+					<Alive.Body Margin="20">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+
+Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+
+Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+					</Alive.Body>
+				</Alive.TabPage>
+
+			</PageControl>
+		</Alive.StickyHeader>
+	</Alive.MediaScroller>
+</Alive.Page>

@@ -1,0 +1,120 @@
+<Alive.Page ux:Class="Alive.ExampleApp.ProgramPage" xmlns:example="Alive.ExampleApp">
+	<Router ux:Dependency="router" />
+
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+
+		var events = Observable(
+			{
+				image: "Assets/event1.jpg",
+				categoryColor: "Alive.Green",
+				time: "Today - 09:00",
+				person: "Bernard Guber",
+				title: "Design better with less distractions",
+				attending: Observable(false)
+			},
+			{
+				image: "Assets/event2.jpg",
+				categoryColor: "Alive.Yellow",
+				time: "Today - 09:00",
+				person: "Serena Hitcher",
+				title: "Why AI is working and I'm not!",
+				attending: Observable(false)
+			},
+			{
+				image: "Assets/event3.jpg",
+				categoryColor: "Alive.Green",
+				time: "Today - 09:00",
+				person: "Mark Spencer",
+				title: "Upwards and onwards",
+				attending: Observable(false)
+			},
+			{
+				image: "Assets/event4.jpg",
+				categoryColor: "Alive.Blue",
+				time: "Today - 10:00",
+				person: "Lydia	Manning",
+				title: "Why women are taking over important positions in society",
+				attending: Observable(false)
+			},
+			{
+				image: "Assets/event5.jpg",
+				categoryColor: "Alive.Red",
+				time: "Today - 10:00",
+				person: "Jenny Hook",
+				title: "Why I used to be stupid",
+				attending: Observable(false)
+			},
+			{
+				image: "Assets/event6.jpg",
+				categoryColor: "Alive.Yellow",
+				time: "Today - 09:00",
+				person: "Mitch Bauermann",
+				title: "Light the spark of science",
+				attending: Observable(false)
+			},
+			{
+				image: "Assets/event7.jpg",
+				categoryColor: "Alive.Green",
+				time: "Today - 09:00",
+				person: "Jay Greene",
+				title: "The path ahead",
+				attending: Observable(false)
+			}
+		);
+
+		function attendEvent(args) {
+			args.data.attending.value = true;
+		}
+	
+		function pushDetails() {
+			router.push("details");
+		}
+		
+		module.exports = {
+			items: events,
+			attendEvent: attendEvent,
+			pushDetails: pushDetails
+		}
+	</JavaScript>
+
+	<Alive.MediaScroller TopBarColor="Alive.Dark.PrimaryBackgroundColor">
+		<StackPanel ux:Template="TopBar">
+			<Alive.DarkTheme />
+			<StatusBarBackground />
+			<Alive.BodyBold Alignment="Center" Margin="0,20">Talks</Alive.BodyBold>
+		</StackPanel>
+
+		<Image ux:Binding="Media" File="../Assets/event4.jpg" StretchMode="UniformToFill" />
+
+		<Alive.StickyHeader>
+			<Panel ux:Binding="Header" Color="{Resource Alive.Blue}">
+				<Alive.DarkTheme/>
+				<DockPanel Margin="25,20">
+					<Alive.IconLabel Icon="&#xEA46;" Alignment="Left" Text="Today"/>
+
+					<StackPanel Orientation="Horizontal" Dock="Right">
+						<Alive.ButtonText Value="Filter" Alignment="VerticalCenter" Margin="0,0,10,0"/>
+						<Alive.Icon Value="&#xEC5E;" Color="{Resource Alive.BodyTextColor}" Alignment="VerticalCenter"/>
+					</StackPanel>
+				</DockPanel>
+			</Panel>
+
+			<StackPanel>
+				<Alive.ListView Items="{items}">
+					<Alive.SwipeActionPanel ux:Template="Item" ux:Name="item"
+						ButtonText="Attend this event"
+						ConfirmationText="Attending!"
+						GradientStartColor="Alive.Gradient2.StartColor"
+						GradientEndColor="Alive.Gradient2.EndColor">
+
+						<Alive.SwipeActionConfirmed Handler="{attendEvent}" />
+						<example:ProgramItem CategoryColor="{DataToResource categoryColor}" IsAttending="{attending}" Time="{time}" Person="{person}" Title="{title}" Clicked="{pushDetails}">
+							<FileImageSource ux:Binding="ImageSource" File="{image}" />
+						</example:ProgramItem>
+					</Alive.SwipeActionPanel>
+				</Alive.ListView>
+			</StackPanel>
+		</Alive.StickyHeader>
+	</Alive.MediaScroller>
+</Alive.Page>

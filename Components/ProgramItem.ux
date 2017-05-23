@@ -1,0 +1,28 @@
+<DockPanel ux:Class="Alive.ExampleApp.ProgramItem" MinHeight="115" CategoryColor="Black" HitTestMode="LocalBounds">
+	<ImageSource ux:Property="ImageSource"/>
+	<float4 ux:Property="CategoryColor"/>
+	<string ux:Property="Time"/>
+	<string ux:Property="Person"/>
+	<string ux:Property="Title"/>
+	<bool ux:Property="IsAttending" />
+
+	<Panel Dock="Left">
+		<Image ux:Name="img" Source="{ReadProperty ImageSource}" Width="90" StretchMode="UniformToFill">
+			<Alive.DarkTheme />
+			<Rectangle ux:Name="attendingOverlay" Layer="Overlay" Color="transparentize({Resource Alive.Dark.Blue}, 0.3)" Opacity="0">
+				<Alive.Icon Value="&#xEC4B;" Alignment="BottomRight" Margin="5" />
+			</Rectangle>
+		</Image>
+	</Panel>
+
+	<WhileTrue Value="{ReadProperty IsAttending}">
+		<Change attendingOverlay.Opacity="1" Duration=".1" />
+	</WhileTrue>
+
+	<StackPanel Alignment="VerticalCenter" Margin="13,0">
+		<Rectangle Color="{ReadProperty CategoryColor}" Width="30" Height="3" Alignment="Left"/>
+		<Text FontSize="13" Color="{Resource Alive.Gray600}" Value="{ReadProperty Time}" Margin="0,8,0,3"/>
+		<Alive.BodyBold Value="{ReadProperty Person} -"/>
+		<Alive.BodyBold Value="{ReadProperty Title}"/>
+	</StackPanel>
+</DockPanel>

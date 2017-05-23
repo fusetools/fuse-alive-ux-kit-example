@@ -1,0 +1,47 @@
+<Alive.Page ux:Class="Alive.ExampleApp.SettingsPage">
+	<Alive.Card ux:Class="Alive.SettingsMenuItem" Padding="20">
+		<string ux:Property="Label" />
+
+		<StackLayout />
+
+		<Alive.ButtonText Alignment="Center" Value="{ReadProperty Label}" Opacity=".5" Margin="0,15" />
+	</Alive.Card>
+
+	<ScrollView>
+		<StackPanel>
+			<StackPanel Margin="15" ItemSpacing="15">
+				<Alive.SettingsMenuItem Label="Enable dark theme">
+					<Alive.Switch Alignment="Center" Value="{darkThemeEnabled}" Margin="0,20" />
+				</Alive.SettingsMenuItem>
+
+				<Grid Columns="1*,1*" CellSpacing="15">
+					<Alive.Card>
+						<StackPanel ItemSpacing="15" Margin="15">
+							<Alive.Switch Alignment="Center" Value="true" />
+							<Alive.Switch Alignment="Center" />
+						</StackPanel>
+					</Alive.Card>
+
+					<Alive.ThemedCard>
+						<Alive.DarkTheme />
+						<StackPanel ItemSpacing="15" Margin="15">
+							<Alive.Switch Alignment="Center" Value="true" />
+							<Alive.Switch Alignment="Center" />
+						</StackPanel>
+					</Alive.ThemedCard>
+				</Grid>
+
+				<Alive.Card>
+					<StackLayout />
+					<Alive.CardMedia Color="{Resource Alive.SecondaryBackgroundColor}">
+						<Alive.Slider Margin="10,0" ux:Name="slider1" />
+					</Alive.CardMedia>
+
+					<Alive.Slider Margin="10,0" Value="{Property slider1.Value}" />
+				</Alive.Card>
+
+				<Alive.CallToActionButton Text="A button" Glow="true" />
+			</StackPanel>
+		</StackPanel>
+	</ScrollView>
+</Alive.Page>

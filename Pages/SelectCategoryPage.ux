@@ -1,0 +1,55 @@
+<Alive.Page ux:Class="Alive.ExampleApp.SelectCategoryPage" xmlns:example="Alive.ExampleApp">
+	<Router ux:Dependency="router" />
+
+	<JavaScript>
+		exports.pushProgram = function() {
+			router.push("program");
+		}
+	</JavaScript>
+
+	<Alive.Card ux:Class="Alive.ExampleApp.CategoryPreviewCard" Margin="8,10" Clicked="{pushProgram}" Alignment="Top">
+		<StackPanel>
+			<Alive.CardMedia Height="190">
+				<Alive.ImageFill File="../Assets/event2.jpg" />
+			</Alive.CardMedia>
+			<Alive.CardBody>
+				<Alive.Title>Over 50 speakers</Alive.Title>
+				<Alive.Body>With a diverse selection of interesting topics ranging from design to artificial intelligence, we're confident there's a talk for you.</Alive.Body>
+			</Alive.CardBody>
+		</StackPanel>
+	</Alive.Card>
+	
+	<DockPanel>
+		<Alive.NavBar Dock="Top">
+			<Alive.NavBarTitle Alignment="Center">
+				Select category
+			</Alive.NavBarTitle>
+		</Alive.NavBar>
+
+		<Alive.TabPageControl>
+			<Alive.PartialTabPage Label="Talks">
+				<example:CategoryPreviewCard />
+			</Alive.PartialTabPage>
+
+			<Alive.PartialTabPage Label="Music">
+				<example:CategoryPreviewCard />
+			</Alive.PartialTabPage>
+
+			<Alive.PartialTabPage Label="Exhibitions">
+				<example:CategoryPreviewCard />
+			</Alive.PartialTabPage>
+
+			<Alive.PartialTabPage Label="Workshops">
+				<example:CategoryPreviewCard />
+			</Alive.PartialTabPage>
+
+			<Alive.PartialTabPage Label="Comedy">
+				<example:CategoryPreviewCard />
+			</Alive.PartialTabPage>
+
+			<Alive.PartialTabPage Label="Meetups">
+				<example:CategoryPreviewCard />
+			</Alive.PartialTabPage>
+		</Alive.TabPageControl>
+	</DockPanel>
+</Alive.Page>

@@ -1,0 +1,57 @@
+<App xmlns:example="Alive.ExampleApp">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+		
+		exports.darkThemeEnabled = Observable(false);
+		
+		exports.closeMenu = function () { drawer.close(); };
+		exports.toggleMenuButton = function () { drawer.toggleMenu(); };
+
+		function createGoToHandler(route) {
+			return function() {
+				router.goto(route);
+				drawer.close();
+			}
+		}
+
+		exports.goToSelect = createGoToHandler("select");
+		exports.goToSchedule = createGoToHandler("schedule");
+		exports.goToSettings = createGoToHandler("settings");
+		exports.goToStats = createGoToHandler("stats");
+	</JavaScript>
+
+	<Panel ux:Class="Alive.ExampleApp.DrawerItem" HitTestMode="LocalBounds">
+		<string ux:Property="Text" />
+		<Alive.BodyBold Value="{ReadProperty Text}" Margin="50,20,0,20" />
+	</Panel>
+
+	<Alive.FallbackTheme />
+
+	<Panel>
+		<WhileTrue Value="{Read darkThemeEnabled}">
+			<Alive.DarkTheme />
+		</WhileTrue>
+		<WhileFalse Value="{Read darkThemeEnabled}">
+			<Alive.LightTheme />
+		</WhileFalse>
+
+		<Router ux:Name="router" />
+		<Alive.Drawer ux:Name="drawer">
+			<StackPanel ux:Binding="Menu">
+				<example:DrawerItem Text="Program" Clicked="{goToSelect}" />
+				<example:DrawerItem Text="Your schedule" Clicked="{goToSchedule}" />
+				<example:DrawerItem Text="Stats" Clicked="{goToStats}" />
+				<example:DrawerItem Text="Settings" Clicked="{goToSettings}" />
+			</StackPanel>
+
+			<Navigator DefaultPath="select">
+				<example:SelectCategoryPage ux:Template="select" router="router" />
+				<example:ProgramPage ux:Template="program" router="router" />
+				<example:DetailsPage ux:Template="details" router="router" />
+				<example:SchedulePage ux:Template="schedule" router="router" drawer="drawer" />
+				<example:StatsPage ux:Template="stats" />
+				<example:SettingsPage ux:Template="settings" />
+			</Navigator>
+		</Alive.Drawer>
+	</Panel>
+</App>
